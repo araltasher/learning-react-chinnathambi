@@ -12,18 +12,38 @@
 <body>
     <div id="container"></div>
     <script type="text/babel">
-    var helloWorld = React.createClass({
-        render: function(){
-            return(
-                <p>Hello, componentized world!</p>
-            );
+        class HelloWorld extends React.Component {
+            render() {
+                return <p>Hello, {this.props.greetTarget}!</p>
+            }       
         }
-    });
 
-    ReactDOM.render(
-        <helloWorld />,
-        document.querySelector('#container')
-    );
+        class Buttonify extends React.Component{
+            render(){
+                return (
+                <div>
+                <button type = {this.props.behavior}> {this.props.children} </button>
+                </div>
+                );
+            }
+        }
+
+        ReactDOM.render(
+            <div>
+                <div>
+                    <HelloWorld greetTarget="Batman"/>
+                    <HelloWorld greetTarget="Iron Man"/>
+                    <HelloWorld greetTarget="Nicolas Cage"/>
+                    <HelloWorld greetTarget=" Mega Man"/>
+                    <HelloWorld greetTarget="Bono"/>
+                    <HelloWorld greetTarget="Catwoman"/>
+                </div>
+                <div>
+                <Buttonify behavior="Submit">SEND DATA</Buttonify>
+                </div>
+            </div>,
+            document.querySelector("#container")
+        );    
     </script>
 </body>
 
