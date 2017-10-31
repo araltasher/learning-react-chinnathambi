@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Transferring Properties</title>
+    <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+
+    <style>
+        #container {
+            padding: 50px;
+            background-color: #FFF;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script type="text/babel">
+    
+    class Display extends React.Component {
+        render() {
+            return(
+                <div>
+                    <p>{this.props.color}</p>
+                    <p>{this.props.num}</p>
+                    <p>{this.props.size}</p>
+                </div>
+            );
+        }
+    }
+
+    class Label extends React.Component {
+        render() {
+            return(
+                // the spread {...array} operator allows you to unwrap an array into its individual elements
+                // therefore you don't have to list every props one by one
+                <Display {...this.props} />
+            );
+        }
+    }
+
+    class Shirt extends React.Component {
+        render() {
+            return(
+                // the spread {...array} operator allows you to unwrap an array into its individual elements
+                // therefore you don't have to list every props one by one
+                <Label {...this.props} />
+            );
+        }
+    }
+
+    ReactDOM.render(
+        <div>
+        <Shirt 
+            color="steelblue"
+            num = "3.14"
+            size="medium"
+            />
+        </div>, 
+    document.querySelector("#container")
+    );
+    </script>
+</body>
+
+</html>
